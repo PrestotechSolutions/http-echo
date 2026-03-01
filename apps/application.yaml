@@ -1,16 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: http-echo-gitops
+  name: http-echo
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: git@github.com:PrestotechSolutions/http-echo.git
-    path: manifests/http-echo
+    repoURL: https://github.com/PrestotechSolutions/http-echo.git
+    targetRevision: main
+    path: infrastructure
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: http-echo
   syncPolicy:
     automated:
       prune: true
